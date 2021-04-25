@@ -159,3 +159,91 @@ FROM Invoice
 INNER JOIN Customer ON Invoice.CustomerId = Customer.CustomerId
 ORDER BY Total DESC, InvoiceDate DESC
 LIMIT 10;
+
+-- Count the rows in customer table
+select count(*) from Customer;
+
+-- Count the rows in colum FirstName in Customer table
+select count(FirstName) from Customer;
+
+-- Count the rows in Customer table where FirstName = Frank
+select count(*) from Customer
+where FirstNAme = "Frank";
+
+select count(FirstNAme) from Customer where SupportRepId = 4;
+
+select Employee.FirstName as Employee, count(Customer.FirstName) as Customer from Employee
+join Customer on Customer.SupportRepId = Employee.EmployeeId
+where Employee.FirstName = "Jane";
+
+-- Returns the first name sorted alphabetically from Customer
+SELECT MIN(LastName) FROM Customer;
+
+-- Returns the last(oldest) date of birth from Employee
+SELECT MIN(BirthDate) FROM Employee;
+
+-- Returns the last name sorted alphabetically from Customer
+SELECT MAX(LastName) FROM Customer;
+
+-- Returns the latest hire date from Employee
+SELECT MAX(HireDate) FROM Employee;
+
+-- shows the average from the Invoice
+SELECT AVG(Total) FROM Invoice;
+
+-- Round the average from Invoice to 2 decimal places
+SELECT ROUND(AVG(Total), 2) FROM Invoice;
+
+-- show Total from Invoice where InvoiceId = 2
+SELECT TOTAL FROM Invoice
+WHERE InvoiceId = 2;
+
+SELECT SUM(UnitPrice * Quantity) FROM InvoiceLine
+WHERE InvoiceId = 2;
+
+-- Show number of tracks from albumid
+SELECT COUNT(*) FROM Track
+GROUP BY AlbumId;
+
+SELECT AlbumId, COUNT(*) FROM Track
+GROUP BY AlbumId;
+
+-- Shows Album tital and track numbers
+SELECT Album.Title, COUNT(*) FROM Track
+INNER JOIN Album ON Track.AlbumId = Album.AlbumId
+GROUP BY Track.AlbumId;
+
+-- Shows the min priced tracks and albumID
+SELECT AlbumId, MIN(UnitPrice) FROM Track
+GROUP BY AlbumId;
+
+-- Shows the max priced Tracks and AlbumId
+SELECT AlbumId, MAX(UnitPrice) FROM Track
+GROUP BY AlbumId;
+
+-- Rounds the price of each album to 2 decimal places
+SELECT AlbumId, ROUND(SUM(UnitPrice), 2) FROM Track
+GROUP BY AlbumId;
+
+SELECT Album.Title, ROUND(SUM(UnitPrice), 2) FROM Track
+INNER JOIN Album ON Track.AlbumId = Album.AlbumId
+GROUP BY Track.AlbumId;
+
+-- count the number of customer in Berlin
+SELECT City, COUNT(*) FROM Customer
+WHERE City = "Berlin";
+
+-- same as above
+SELECT COUNT(City) FROM Customer 
+WHERE  City = "Berlin;"
+
+SELECT Artist.Name AS Artist, COUNT(Track.TrackId) AS Track FROM Artist
+JOIN Album ON Artist.ArtistId = Album.ArtistId
+JOIN Track ON Album.AlbumId = Track.AlbumId
+GROUP BY Artist.Name
+ORDER BY COUNT(Artist.Name)
+DESC LIMIT 5;
+
+SELECT SUM(InvoiceLine.UnitPrice * InvoiceLine.Quantity), Track.Name AS Track FROM InvoiceLine
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId
+WHERE Track.Name = "The Woman King";

@@ -10,3 +10,4 @@ vscode:
     - eventyret.bootstrap-4-cdn-snippet
     - kevinglasson.cornflakes-linter
     - hookyqr.beautify
+    - cweijan.vscode-mysql-client2@3.6.8:f38520fce0e95bcd0036c3ca324f99e9
