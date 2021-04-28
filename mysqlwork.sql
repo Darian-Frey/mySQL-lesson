@@ -1,6 +1,8 @@
 mysql -v < Chinook_MySql_AutoIncrementPKs.sql  
 --Import database
 
+pip3 install pymysql
+
 use Chinook; 
 --Use database
 
