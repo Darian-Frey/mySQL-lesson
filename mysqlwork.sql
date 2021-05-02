@@ -1,3 +1,37 @@
+mongo "mongodb+srv://myfirstcluster.i6oup.mongodb.net/myFirstDB" --username root
+
+--create variable coll to reprisent db.celebrities in myFirstDB
+coll = db.celebrities
+
+-- insert a field into the database
+coll.insert({
+...     first: "neil",
+...     last: "hanslem",
+...     dob: "14/07/1983",
+...     gender: "m",
+...     hair_color: "blonde",
+...     occupation: "actor",
+...     nationality: "british"
+... });
+
+-- show all females
+coll.find({ gender:"f" });
+
+--show all females with nationality british
+coll.find({ gender:"f", nationality:"british" });
+
+--show all females with nationality american or irish
+coll.find({ gender:"f", $or: [{naionality:"american"}, {nationality:"irish"}]});
+
+--same as above but sorted bt nationality in assending order , -1 for decending order
+coll.find({ gender:"f", $or: [{naionality:"american"}, {nationality:"irish"}]}).sort({nationality: 1});
+
+-- set first person with nationality irish to hair_color red
+coll.update({nationality:"irish"}, {$set: {hair_color:"red"}});
+
+-- set everyone with nationality irish to hair_color red
+coll.update({nationality:"irish"}, {$set: {hair_color:"red"}}, {multi:True});
+
 mysql -v < Chinook_MySql_AutoIncrementPKs.sql  
 --Import database
 
