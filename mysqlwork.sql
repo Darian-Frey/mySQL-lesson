@@ -1,4 +1,9 @@
+-- generate the env.py file
+touch env.py
+
 mongo "mongodb+srv://myfirstcluster.i6oup.mongodb.net/myFirstDB" --username root
+
+mongo mongodb+srv://myfirstcluster.i6oup.mongodb.net/myFirstDB --username root
 
 --create variable coll to reprisent db.celebrities in myFirstDB
 coll = db.celebrities
@@ -31,6 +36,12 @@ coll.update({nationality:"irish"}, {$set: {hair_color:"red"}});
 
 -- set everyone with nationality irish to hair_color red
 coll.update({nationality:"irish"}, {$set: {hair_color:"red"}}, {multi:True});
+
+-- removes the record with first name kate and last name bush
+coll.remove({first: "kate", last: "bush"})
+
+
+mongodb+srv://root:<password>@myfirstcluster.i6oup.mongodb.net/myFirstDB?retryWrites=true&w=majority
 
 mysql -v < Chinook_MySql_AutoIncrementPKs.sql  
 --Import database
