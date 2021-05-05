@@ -1,5 +1,15 @@
+pip3 install dnspython
+
+pip3 install pymongo
+
 -- generate the env.py file
 touch env.py
+
+--Once both of those have been installed, we need to go back to the MongoDB page and click on 'Overview' from our Cluster
+--instead of using the Mongo shell, we will 'Connect our application'.
+--Make sure to select 'Python' for the driver, and then select the appropriate version for your environment
+--Let's copy that string and head back to our project.
+--If you recall from the Thorin project, we're going to hide this confidential data within an env.py file
 
 mongo "mongodb+srv://myfirstcluster.i6oup.mongodb.net/myFirstDB" --username root
 
